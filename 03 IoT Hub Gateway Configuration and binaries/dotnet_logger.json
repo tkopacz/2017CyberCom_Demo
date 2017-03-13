@@ -1,0 +1,84 @@
+{
+  "modules": [
+    {
+      "name": "logger",
+      "loader": {
+        "name": "native",
+        "entrypoint": {
+          "module.path": "logger.dll"
+        }
+      },
+      "args": {
+        "filename": "log.txt"
+      }
+    },
+    {
+      "name": "dotnet_ModuleMQTTReader",
+      "loader": {
+        "name": "dotnet",
+        "entrypoint": {
+          "assembly.name": "ModuleMQTTReader",
+          "entry.type": "ModuleMQTTReader.MQTTReader"
+        }
+      },
+      "args": {
+        "aaa": 0.1
+      }
+    },
+    {
+      "name": "identity_map",
+      "loader": {
+        "name": "native",
+        "entrypoint": {
+          "module.path": "identity_map.dll"
+        }
+      },
+      "args": [
+        {
+          "macAddress": "01:02:03:04:05:06",
+          "deviceId": "mqttlora01",
+          "deviceKey": "..."
+        },
+        {
+          "macAddress": "01:02:03:04:05:07",
+          "deviceId": "mqttlora02",
+          "deviceKey": "..."
+        },
+        {
+          "macAddress": "01:02:03:04:05:08",
+          "deviceId": "mqttlora03",
+          "deviceKey": "..."
+        }
+      ]
+    },
+    {
+      "name": "iothub",
+      "loader": {
+        "name": "native",
+        "entrypoint": {
+          "module.path": "iothub.dll"
+        }
+      },
+      "args": {
+        "IoTHubName": "...",
+        "IoTHubSuffix": "...",
+        "Transport": "AMQP"
+      }
+    }
+
+  ],
+  "links": [
+    {
+      "source": "*",
+      "sink": "logger"
+    },
+    {
+      "source": "dotnet_ModuleMQTTReader",
+      "sink": "identity_map"
+    },
+    {
+      "source": "identity_map",
+      "sink": "iothub"
+    }
+  ]
+}

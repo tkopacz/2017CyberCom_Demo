@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LocalDebuggerCommandArguments>D:\GIT_TKOPACZ\2017IotHubGatewaySDK\Demo1\dotnet_logger.json</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+</Project>
